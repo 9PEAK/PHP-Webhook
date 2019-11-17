@@ -7,6 +7,10 @@ class Core
 
     protected static $conf;
 
+    /**
+     * G本地仓库(GET传参)
+     * @param string $id
+     */
     function __construct($id)
     {
         self::$conf = include (self::CONFIG_FILE);
