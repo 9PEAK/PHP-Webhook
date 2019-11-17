@@ -11,6 +11,8 @@ class Core
     {
         self::$conf = json_decode(file_get_contents(self::CONFIG_FILE));
         self::$conf = @self::$conf->{$id} ?: false;
+
+        print_r(self::$conf);
     }
 
 
