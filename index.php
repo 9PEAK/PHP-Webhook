@@ -7,5 +7,5 @@ $shell = new Core($_GET['id']);
 $res = $shell->check();
 if ($res===true) {
     $shell->exec();
-    echo 'Success';
+    echo 'Success!';
 }
