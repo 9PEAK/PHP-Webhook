@@ -22,16 +22,16 @@ class Core
         if (!self::$conf) {
             return -1;
         }
-        if (get_current_user()!=self::$conf['usr']) {
+        if (get_current_user()!=self::$conf->usr) {
             return -2;
         }
-        return self::{self::$conf['typ']}(self::$conf['key']);
+        return self::{self::$conf->typ}(self::$conf->key);
     }
 
 
     public function exec ()
     {
-        $cmd = join(' && ', self::$conf['cmd']);
+        $cmd = join(' && ', self::$conf->cmd);
         passthru ($cmd, $cmd);
         return $cmd;
     }
