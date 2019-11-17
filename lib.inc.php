@@ -39,11 +39,8 @@ class Core
         $body = file_get_contents('php://input');
         $head = getallheaders();
         $sign = "sha1=".hash_hmac('sha1', $body, $key);
-        echo $head['X-Hub-Signature'],' ',$sign;
         return $head['X-Hub-Signature']==$sign;
     }
-
-
 }
 
 
