@@ -3,14 +3,14 @@
 class Core
 {
 
-    const CONFIG_FILE = 'config.json';
+    const CONFIG_FILE = 'config.php';
 
     protected static $conf;
 
     function __construct($id)
     {
-        self::$conf = json_decode(file_get_contents(self::CONFIG_FILE));
-        self::$conf = @self::$conf->{$id} ?: false;
+        self::$conf = include (self::CONFIG_FILE);
+        self::$conf = @self::$conf[$id] ?: false;
     }
 
 
@@ -19,16 +19,16 @@ class Core
         if (!self::$conf) {
             return -1;
         }
-        if (get_current_user()!=self::$conf->usr) {
+        if (get_current_user()!=self::$conf['usr']) {
             return -2;
         }
-        return self::{self::$conf->typ}(self::$conf->key);
+        return self::{self::$conf['typ']}(self::$conf['key']);
     }
 
 
     public function exec ()
     {
-        $cmd = join(' && ', self::$conf->cmd);
+        $cmd = join(' && ', self::$conf['cmd']);
         passthru ($cmd, $cmd);
         return $cmd;
     }
