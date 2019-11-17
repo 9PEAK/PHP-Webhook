@@ -14,7 +14,6 @@ class Core
     }
 
 
-
     public function check ()
     {
         if (!self::$conf) {
