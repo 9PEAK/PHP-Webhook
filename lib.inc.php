@@ -10,6 +10,7 @@ class Core
     function __construct($id)
     {
         self::$conf = json_decode(file_get_contents(self::CONFIG_FILE));
+        print_r(self::$conf);
         self::$conf = @self::$conf->{$id} ?: false;
 
         print_r(self::$conf);
