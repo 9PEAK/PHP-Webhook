@@ -3,7 +3,11 @@
 include 'lib.inc.php';
 
 $shell = new Core($_GET['id']);
-if ($shell->check()) {
+
+$res = $shell->check();
+if ($res===true) {
     $shell->exec();
     echo 'Success';
 }
+
+echo $res;

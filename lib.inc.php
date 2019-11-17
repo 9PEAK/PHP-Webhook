@@ -17,10 +17,10 @@ class Core
     public function check ()
     {
         if (!self::$conf) {
-            return;
+            return -1;
         }
         if (get_current_user()!=self::$conf['usr']) {
-            return;
+            return -2;
         }
         return self::{self::$conf['typ']}(self::$conf['key']);
     }
@@ -39,6 +39,7 @@ class Core
         $body = json_decode(file_get_contents('php://input'));
         $head = getallheaders();
         $sign = "sha1=".hash_hmac('sha1', $body, $key);
+        echo $head['X-Hub-Signature'],' ',$sign;
         return $head['X-Hub-Signature']==$sign;
     }
 
