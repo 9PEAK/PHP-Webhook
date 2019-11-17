@@ -9,5 +9,3 @@ if ($res===true) {
     $shell->exec();
     echo 'Success';
 }
-
-echo $res;
