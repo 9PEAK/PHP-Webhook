@@ -10,10 +10,7 @@ class Core
     function __construct($id)
     {
         self::$conf = json_decode(file_get_contents(self::CONFIG_FILE));
-        print_r(self::$conf);
         self::$conf = @self::$conf->{$id} ?: false;
-
-        print_r(self::$conf);
     }
 
 
@@ -39,7 +36,7 @@ class Core
 
     protected static function github ($key)
     {
-        $body = json_decode(file_get_contents('php://input'));
+        $body = file_get_contents('php://input');
         $head = getallheaders();
         $sign = "sha1=".hash_hmac('sha1', $body, $key);
         echo $head['X-Hub-Signature'],' ',$sign;
