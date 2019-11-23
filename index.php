@@ -9,5 +9,5 @@ if ($res===true) {
     $shell->exec();
 //    echo 'Success!';
 } else {
-    echo $res;
+    echo '[ERROR] '.$res;
 }
