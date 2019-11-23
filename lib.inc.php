@@ -54,7 +54,16 @@ class Core
             $res[] = '# '.$cmd." = ".$i;
         }
 
-        return $to=='string' ? join("\n". $res) : $res;
+        switch ($to) {
+            case 'string':
+                $res = join("\n". $res);
+                break;
+            case 'json':
+                $res = json_encode($res);
+                break;
+        }
+
+        return $res;
 
     }
 
