@@ -42,8 +42,13 @@ class Core
 //        passthru ($cmd, $cmd);
 //        return $cmd;
 
+        array_unshift(self::$conf['cmd'], 'cd '.self::$conf['dir']);
+
         foreach (self::$conf['cmd'] as $i=>&$cmd) {
-            $cmd = self::$conf['dir'].$cmd;
+//            $cmd = self::$conf['dir'].$cmd;
+
+            $cmd = str_replace('{$dir}', self::$conf['dir'], $cmd);
+
             passthru ($cmd, $i);
 //            passthru (self::$conf['dir'].$cmd, $i);
             echo "\n# ".$cmd." = ".$i."\n";
