@@ -21,11 +21,17 @@ class Core
     public function check ()
     {
         if (!self::$conf) {
-            return -1;
+            return '配置有误。';
         }
-        if (get_current_user()!=self::$conf['usr']) {
-            return -2;
+
+//        if (get_current_user()!=self::$conf['usr']) {
+//            return '';
+//        }
+
+        if (!method_exists(static::class, self::$conf['typ'])) {
+            return '暂不支持“'.self::$conf['typ'].'”。';
         }
+
         return self::{self::$conf['typ']}(self::$conf['key']);
     }
 

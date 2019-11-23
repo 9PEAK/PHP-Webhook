@@ -8,4 +8,6 @@ $res = $shell->check();
 if ($res===true) {
     $shell->exec();
     echo 'Success!';
+} else {
+    echo $res;
 }
