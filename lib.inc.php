@@ -41,8 +41,9 @@ class Core
 //        $cmd = join(' && ', self::$conf['cmd']);
         //        passthru ($cmd, $cmd);
 //        return $cmd;
-        foreach (self::$conf['cmd'] as &$cmd) {
-            passthru ($cmd, $cmd);
+        foreach (self::$conf['cmd'] as $i=>&$cmd) {
+            passthru ($cmd, $i);
+            echo "\n".$cmd." : ".$i;
         }
 
     }
