@@ -2,11 +2,10 @@
 
 return [
     'webhook' => [
-        "key"=> "b94dcbde1f92840619ebfae7e60dfe18",
+        "key"=> "as-sk-token-sign",
         "typ"=> "github",
-        "usr"=> "www",
+        "dir"=> "/linux/www/9peak.net/",
         "cmd"=> [
-            "cd /data/wwwroot/9peak/9peak.net/webhook",
             "git pull"
         ]
     ],
