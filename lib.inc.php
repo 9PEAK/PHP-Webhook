@@ -38,9 +38,13 @@ class Core
 
     public function exec ()
     {
-        $cmd = join(' && ', self::$conf['cmd']);
-        passthru ($cmd, $cmd);
-        return $cmd;
+//        $cmd = join(' && ', self::$conf['cmd']);
+        //        passthru ($cmd, $cmd);
+//        return $cmd;
+        foreach (self::$conf['cmd'] as &$cmd) {
+            passthru ($cmd, $cmd);
+        }
+
     }
 
 
