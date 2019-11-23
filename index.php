@@ -6,8 +6,7 @@ $shell = new Core($_GET['id']);
 
 $res = $shell->check();
 if ($res===true) {
-    $res = $shell->exec();
-    echo $res;
+    print_r($shell->exec('array'));
 } else {
     echo '[ERROR] '.$res;
 }
