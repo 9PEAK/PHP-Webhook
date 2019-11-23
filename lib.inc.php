@@ -45,6 +45,14 @@ class Core
         $sign = "sha1=".hash_hmac('sha1', $body, $key);
         return $head['X-Hub-Signature']==$sign;
     }
+
+
+    protected static function gitee ($key)
+    {
+        $head = getallheaders();
+        return $head['X-GITEE-TOKEN']==$key;
+    }
+
 }
 
 
