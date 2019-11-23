@@ -21,12 +21,12 @@ class Core
     public function check ()
     {
         if (!self::$conf) {
-            return '配置有误。';
+            return '项目配置有误。';
         }
 
-//        if (get_current_user()!=self::$conf['usr']) {
-//            return '';
-//        }
+        if (!@self::$conf['dir']) {
+            return '项目文件夹未设置。';
+        }
 
         if (!method_exists(static::class, self::$conf['typ'])) {
             return '暂不支持“'.self::$conf['typ'].'”。';
@@ -41,8 +41,9 @@ class Core
 //        $cmd = join(' && ', self::$conf['cmd']);
         //        passthru ($cmd, $cmd);
 //        return $cmd;
+
         foreach (self::$conf['cmd'] as $i=>&$cmd) {
-            passthru ($cmd, $i);
+            passthru ('cd '.self::$conf['dir'].' && '.$cmd, $i);
             echo "\n# ".$cmd." = ".$i."\n";
         }
 
