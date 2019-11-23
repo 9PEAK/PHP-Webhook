@@ -49,14 +49,14 @@ class Core
         $body = file_get_contents('php://input');
         $head = getallheaders();
         $sign = "sha1=".hash_hmac('sha1', $body, $key);
-        return $head['X-Hub-Signature']==$sign;
+        return $head['X-Hub-Signature']==$sign ? true : '非法签名。';
     }
 
 
     protected static function gitee ($key)
     {
         $head = getallheaders();
-        return $head['X-GITEE-TOKEN']==$key;
+        return $head['X-Gitee-Token']==$key ? true : '非法Token。';
     }
 
 }
