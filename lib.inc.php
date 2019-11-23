@@ -51,7 +51,7 @@ class Core
 
             $cmd = str_replace('{$dir}', self::$conf['dir'], $cmd);
             passthru ($cmd, $i);
-            $res[] = '# '.$cmd." = ".$i;
+            $res[] = '# '.$cmd.' = '.$i;
         }
 
         switch ($to) {
