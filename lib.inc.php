@@ -42,6 +42,7 @@ class Core
 //        $cmd = join(' && ', self::$conf['cmd']);
 //        passthru ($cmd, $cmd);
 //        return $cmd;
+        $res = [];
 
         array_unshift(self::$conf['cmd'], 'cd '.self::$conf['dir']);
 
@@ -49,11 +50,11 @@ class Core
 //            $cmd = self::$conf['dir'].$cmd;
 
             $cmd = str_replace('{$dir}', self::$conf['dir'], $cmd);
-
             passthru ($cmd, $i);
-//            passthru (self::$conf['dir'].$cmd, $i);
-            echo "\n# ".$cmd." = ".$i."\n";
+            $res[] = "\n# ".$cmd." = ".$i."\n";
         }
+
+        return $res;
 
     }
 
