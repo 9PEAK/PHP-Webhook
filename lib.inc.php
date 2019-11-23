@@ -43,7 +43,7 @@ class Core
 //        return $cmd;
 
         foreach (self::$conf['cmd'] as $i=>&$cmd) {
-            passthru ('cd '.self::$conf['dir'].' && '.$cmd, $i);
+            passthru (self::$conf['dir'].$cmd, $i);
             echo "\n# ".$cmd." = ".$i."\n";
         }
 
