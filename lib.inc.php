@@ -36,6 +36,7 @@ class Core
     }
 
 
+
     public function exec ()
     {
 //        $cmd = join(' && ', self::$conf['cmd']);
