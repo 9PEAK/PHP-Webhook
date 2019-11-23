@@ -37,7 +37,7 @@ class Core
 
 
 
-    public function exec ()
+    public function exec ($to='string')
     {
 //        $cmd = join(' && ', self::$conf['cmd']);
 //        passthru ($cmd, $cmd);
@@ -51,10 +51,10 @@ class Core
 
             $cmd = str_replace('{$dir}', self::$conf['dir'], $cmd);
             passthru ($cmd, $i);
-            $res[] = "\n# ".$cmd." = ".$i."\n";
+            $res[] = '# '.$cmd." = ".$i;
         }
 
-        return $res;
+        return $to=='string' ? join("\n". $res) : $res;
 
     }
 
