@@ -7,7 +7,7 @@ $shell = new Core($_GET['id']);
 $res = $shell->check();
 if ($res===true) {
     $shell->exec();
-    echo 'Success!';
+    echo '['.date('Y-m-d H:i:s').'] Success!';
 } else {
     echo $res;
 }
