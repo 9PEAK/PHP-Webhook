@@ -125,7 +125,9 @@ class Core
 
         if (self::error()) return;
 
-        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) return;
+        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) {
+            return 'Commit Message不匹配，部署终止。';
+        }
 
         $res = [];
 
