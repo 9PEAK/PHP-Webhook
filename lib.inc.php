@@ -102,7 +102,7 @@ class Core
         }
 
         $func = self::conf_typ();
-        if (!method_exists(static::class, $func)) {
+        if (!method_exists(Git::class, $func)) {
             return self::error('暂不支持“'.$func.'”。');
         }
 
