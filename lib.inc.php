@@ -57,7 +57,7 @@ class Core
 
     private static function conf ($key=null)
     {
-        return $key ? @self::$conf : @self::$conf[$key];
+        return $key ? @self::$conf[$key] : @self::$conf;
     }
 
     protected static function conf_key ()
@@ -102,6 +102,8 @@ class Core
         }
 
         $func = self::conf_typ();
+//        print_r(self::$conf);
+        print_r($func);
         if (!method_exists(Git::class, $func)) {
             return self::error('暂不支持“'.$func.'”。');
         }
