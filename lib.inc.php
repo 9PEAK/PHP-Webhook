@@ -125,9 +125,7 @@ class Core
 
         if (self::error()) return;
 
-        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) {
-            return self::git_msg().' '.self::conf_msg();
-        }
+        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) return;
 
         $res = [];
 
