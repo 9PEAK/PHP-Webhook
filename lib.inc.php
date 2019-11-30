@@ -124,8 +124,7 @@ class Core
     {
 
         if (self::error()) return;
-echo 'GIT MSG: '.self::git_msg();
-echo 'CONF MSG: '.self::conf_msg();
+
         if (self::conf_msg() && self::git_msg()!==self::conf_msg()) {
             return self::git_msg().' '.self::conf_msg();
         }
