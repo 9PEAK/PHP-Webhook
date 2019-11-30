@@ -102,7 +102,7 @@ class Core
         }
 
         $func = self::conf_typ();
-//        print_r(self::$conf);
+
         print_r($func);
         if (!method_exists(Git::class, $func)) {
             return self::error('暂不支持“'.$func.'”。');
@@ -126,7 +126,9 @@ class Core
 
         if (self::error()) return;
 
-        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) return;
+        if (self::conf_msg() && self::git_msg()!==self::conf_msg()) {
+            return self::git_msg().' '.self::conf_msg();
+        }
 
         $res = [];
 
