@@ -180,8 +180,8 @@ trait Git
 
     protected static function git_msg ($type=null)
     {
-        $post = $body = file_get_contents('php://input');
-        return @$post['head_commit']['message'];
+        $post = json_decode(file_get_contents('php://input'));
+        return @$post->head_commit->message;
 
     }
 
