@@ -3,8 +3,8 @@
 //echo 'Composer!!!';
 //exit;
 
-$cmd = `/usr/local/php/bin/php /usr/local/bin/composer install`;
-
+//$cmd = `/usr/local/php/bin/php /usr/local/bin/composer install`;
+$cmd = `/usr/local/bin/composer install`;
 echo $cmd;
 
 return;
