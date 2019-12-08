@@ -32,6 +32,8 @@
 Webhook 的URL配置务必带上id参数，该参数即上述项目名称，表示具体需要部署的项目。
 <br> 如 http://abc.net/webhook/index.php?id=webhook 表示更新部署项目“webhook”。 
 
+<br> 另外服务器请务必做好对应用户和权限的配置。
+
 ### 问题
 目前作者尚未成功实现执行Composer install，如有成功解决者请留言告知，谢谢。
 <ul>
