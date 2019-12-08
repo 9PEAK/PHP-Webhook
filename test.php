@@ -3,6 +3,12 @@
 //echo 'Composer!!!';
 //exit;
 
+$cmd = `/usr/local/php/bin/php /usr/local/bin/composer install`;
+
+echo $cmd;
+
+return;
+
 $cmd = '/data/wwwroot/huba.yun.9peak.net/test.sh';
 
 $res = [];
