@@ -1,0 +1,18 @@
+{
+    "name": "9peak/webhook-deploy",
+    "description": "PHP Webhook 自动部署",
+    "license": "MIT",
+    "keywords": ["9peak", "webhook", "php"],
+    "authors": [
+        {
+            "name": "Kane Young / 杨祥凯",
+            "email": "52653784@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">= 5.3"
+    },
+    "require-dev": {},
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}

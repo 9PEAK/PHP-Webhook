@@ -5,7 +5,7 @@ return [
         'key'=> 'as-sk-token-sign',
         'typ'=> 'github',
         'msg' => '# GIT DEPLOY',
-        'dir'=> '/linux/www/9peak.net/',
+        'dir'=> '/linux/www/yun.abc.net/',
         'cmd'=> [
             'git pull'
         ]
