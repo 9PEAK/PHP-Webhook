@@ -18,7 +18,7 @@
 '9-huba' => [ // 项目名称，多个项目名称不可重复
         'key' => '9e06118d2754dba90a7c5a2886cf2ef6', // webhook中配置的token
         'typ' => 'gitee', // 仓库站点，目前仅支持github和gitee
-        'msg' => '# GIT DEPLOY', // 口令，当git push时附带的消息将与此口令匹配，完全一致时执行shell
+        'msg' => '# GIT DEPLOY', // 口令，当git push时附带的消息将与此口令匹配（大小写敏感），完全一致时执行shell
         'dir' => '/data/wwwroot/yun.abc.net/', // 项目所在目录
         'cmd' => [ // shell，其中{$dir}将被解析为项目所在目录。
             'git pull',
