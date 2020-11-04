@@ -1,40 +1,39 @@
 <?php
 
-const FILE = 'config.php';
-
-class Core
+abstract class Core
 {
 
-    protected static $conf;
-    protected static $shell;
+    private static $conf, $shell;
 
     /**
      * G本地仓库(GET传参)
      * @param string $id
      */
-    function __construct($id, $shell='/bin/bash')
+    function __construct(Config $config, $shell='/bin/bash')
     {
-        self::$conf = include (FILE);
-        self::$conf = @self::$conf[$id] ?: false;
+        self::$conf = $config;
         self::$shell = $shell;
     }
+
+
+    abstract protected function auth (string $key):bool;
+
 
 
     /**
      * 创建Shell文件
      */
-    private function shell ()
-    {
-        $file = self::$conf['dir'].'webhook.sh';
-        if (!file_exists($file)) {
-            $cmd = self::$conf['cmd'];
-            array_unshift($cmd, '#!'.self::$shell);
-            $cmd = join("\n", $cmd);
-            file_put_contents($file, $cmd);
-            chmod($file, 0110);
-        }
-    }
-
+//    private function shell ()
+//    {
+//        $file = self::$conf['dir'].'webhook.sh';
+//        if (!file_exists($file)) {
+//            $cmd = self::$conf['cmd'];
+//            array_unshift($cmd, '#!'.self::$shell);
+//            $cmd = join("\n", $cmd);
+//            file_put_contents($file, $cmd);
+//            chmod($file, 0110);
+//        }
+//    }
 
 
 
@@ -55,47 +54,13 @@ class Core
     }
 
 
-    private static function conf ($key=null)
-    {
-        return $key ? @self::$conf[$key] : @self::$conf;
-    }
-
-    protected static function conf_key ()
-    {
-        return self::conf('key');
-    }
-
-    protected static function conf_dir ()
-    {
-        return self::conf('dir');
-    }
-
-    protected static function conf_msg ()
-    {
-        return self::conf('msg');
-    }
-
-    protected static function conf_typ ()
-    {
-        return self::conf('typ');
-    }
-
-    protected static function conf_cmd ()
-    {
-        return self::conf('cmd');
-    }
-
-
 
     /**
      * 检测是否正常或部署可执行
      * @return string|true
      */
-    public function test ()
+    final public function handle ()
     {
-        if (!self::$conf) {
-            return self::error('项目配置有误。');
-        }
 
         if (!@self::conf_dir()) {
             return self::error('项目文件夹未设置。');
@@ -111,8 +76,6 @@ class Core
         return $res===true ?: self::error($res);
     }
 
-
-    use Git;
 
 
     /**
@@ -159,28 +122,11 @@ trait Git
 {
 
 
-    protected static function github ($key)
-    {
-        $body = file_get_contents('php://input');
-        $head = getallheaders();
-        $sign = "sha1=".hash_hmac('sha1', $body, $key);
-        return $head['X-Hub-Signature']==$sign ?: '非法签名。';
-    }
-
-
-    protected static function gitee ($key)
-    {
-        $head = getallheaders();
-        return $head['X-Gitee-Token']==$key ?: '非法Token。';
-    }
-
-
 
     protected static function git_msg ($type=null)
     {
         $post = json_decode(file_get_contents('php://input'));
         return @$post->head_commit->message;
-
     }
 
 
