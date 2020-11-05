@@ -13,6 +13,11 @@ try {
     }
     $config = Config::set($config);
 
+    # 根据GIT消息判断是否执行部署
+    if (!$config->msg || req_body('head_commit.message')!=$config->msg) {
+        return print('');
+    }
+
     # 创建处理器
 //    if (!$git = Core::factory($config->typ)) {
 //        throw new Exception('暂不支持该GIT仓库。');
@@ -21,7 +26,7 @@ try {
     # 创建处理器、校验KEY、执行脚本
     $git = Core::factory($config->typ);
     if (!$git->auth($config->key, req_header(), req_body())) {
-        return 'KEY校验失败。';
+        throw new Exception('KEY校验失败。');
     }
 
     $res = $git->exec($config->cmd, $config->dir);

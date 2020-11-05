@@ -12,7 +12,7 @@
 
 ### 使用
 
-首先配置项目，将“example-config.php”更名为“config.php”，配置如下：
+首先配置项目，将“example-webhook.conf.php”更名为“webhook.conf.php”，配置说明如下：
 ```php
 '9-huba' => [ // 项目名称，多个项目名称不可重复
         'key' => '9e06118d2754dba90a7c5a2886cf2ef6', // webhook中配置的token
