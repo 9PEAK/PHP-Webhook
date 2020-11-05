@@ -7,7 +7,7 @@ include 'git/core.php';
 
 try {
     # 初始化获取配置
-    $config = include('webhook.conf.php');
+    $config = include('repo.conf.php');
     if (!$config = @$config[$_GET['id']]) {
         throw new Exception('Webhook未配置。');
     }
