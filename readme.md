@@ -10,7 +10,6 @@
 </ul>
 
 
-
 ### 使用
 
 首先配置项目，将“example-config.php”更名为“config.php”，配置如下：
@@ -39,7 +38,7 @@ Webhook 的URL配置务必带上id参数，该参数即上述项目名称，表�
 <ul>
 <li>
 
- [PHP 使用 passthru 执行 “Composer install” 失败](https://learnku.com/php/t/37720)
- 
- </li>
+[PHP 使用 passthru 执行 “Composer install” 失败](https://learnku.com/php/t/37720)
+
+</li>
 </ul>

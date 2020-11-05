@@ -1,6 +1,6 @@
 <?php
 
-final class Config
+class Config
 {
 
 
@@ -23,6 +23,7 @@ final class Config
     }
 
 
-    public $key, $dir, $msg, $type, $cmd;
+    public $key, $dir, $msg, $typ, $cmd;
+
 
 }
