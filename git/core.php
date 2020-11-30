@@ -55,7 +55,7 @@ abstract class Core
             $res = $status = null;
             exec($shell, $res, $status);
             print_r($res);
-//            $status && print_r($res);
+            $status && '指令出错：'.$shell;
 //            $res[] = '['.$i.'] '.$shell;
         }
 
