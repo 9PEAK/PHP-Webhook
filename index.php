@@ -25,7 +25,7 @@ try {
 
     # 创建处理器、校验KEY、执行脚本
     $git = Core::factory($config->typ);
-    if (!$git->auth($config->key, req_header(), req_body())) {
+    if (!$git->auth($config->key, req_header(), (array)req_body())) {
         throw new Exception('KEY校验失败。');
     }
 
