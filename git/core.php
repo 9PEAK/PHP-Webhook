@@ -22,7 +22,7 @@ abstract class Core
     }
 
 
-    abstract public function auth (string $key, array $header, array $body=null):bool;
+    abstract public function auth (string $key, array $header, array $body): bool;
 
 
     /**
