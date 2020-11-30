@@ -45,8 +45,17 @@ abstract class Core
      * @param string $dir 项目所在文件夹，所有指令执行前将先进入该文件夹，并替换$cmd指令中{$dir}的部分，默认空，表示不执行上述规则、直接执行$cmd指令。
      * @return array 指令执行结果
      */
-    final public function exec (array $cmd, $dir='')
+    final public function exec (array $cmd, $dir='') :bool
     {
+        $cmd = join (' && ', $cmd);
+        $res = $status = null;
+        exec($cmd, $res, $status);
+        if ($status) {
+            throw new \Exception(json_encode($res));
+        }
+
+        return true;
+
 //        $res = [];
         array_unshift($cmd, 'cd '.$dir);
         foreach ($cmd as $i=>&$shell) {

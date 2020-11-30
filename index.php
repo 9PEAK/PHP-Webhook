@@ -29,9 +29,9 @@ try {
         throw new Exception('KEY校验失败。');
     }
 
-    $res = $git->exec($config->cmd, @$config->dir);
+    $res = $git->exec($config->cmd);
 
-    echo '[SUCCESS] 执行完毕：<br>';
+    echo "[SUCCESS] 执行完毕：\n";
 //    print_r($res);
 
 } catch (Exception $e) {
