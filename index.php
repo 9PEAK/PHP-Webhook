@@ -14,8 +14,8 @@ try {
     $config = Config::set($config);
 
     # 根据GIT消息判断是否执行部署
-    if (!$config->msg || trim(req_body('head_commit.message'))!=$config->msg) {
-        return print('无需部署。');
+    if (!@$config->msg || trim(req_body('head_commit.message'))!=$config->msg) {
+        return print('无需部署。'.trim(req_body('head_commit.message')). ' 配置：'.$config->msg);
     }
 
     # 创建处理器
