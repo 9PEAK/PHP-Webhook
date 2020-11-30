@@ -54,7 +54,8 @@ abstract class Core
 //            $res[$shell] = null;
             $res = $status = null;
             exec($shell, $res, $status);
-            $status || print_r($res);
+            print_r($res);
+//            $status && print_r($res);
 //            $res[] = '['.$i.'] '.$shell;
         }
 
