@@ -5,9 +5,6 @@ include 'github.lib.php';
 abstract class Core
 {
 
-    private static $conf;
-
-
     const TYPE = [
         'gitee' => Gitee::class,
         'github' => Github::class,
@@ -53,7 +50,7 @@ abstract class Core
 
         $res = [];
 
-        array_unshift($cmd, 'cd '.self::$conf['dir']);
+        array_unshift($cmd, 'cd '.$dir);
         foreach ($cmd as $i=>&$shell) {
             $shell = str_replace('{$dir}', $dir, $shell);
             passthru ($shell, $i);

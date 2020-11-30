@@ -15,7 +15,7 @@ try {
 
     # 根据GIT消息判断是否执行部署
     if (!@$config->msg || trim(req_body('head_commit.message'))!=$config->msg) {
-        return print('无需部署。'.trim(req_body('head_commit.message')). ' 配置：'.$config->msg);
+        return print('无需部署。');
     }
 
     # 创建处理器
@@ -29,7 +29,7 @@ try {
         throw new Exception('KEY校验失败。');
     }
 
-    $res = $git->exec($config->cmd, $config->dir);
+    $res = $git->exec($config->cmd, @$config->dir);
 
     echo '[SUCCESS] 执行完毕：<br>';
     print_r($res);
