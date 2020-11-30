@@ -32,7 +32,7 @@ try {
     $res = $git->exec($config->cmd, @$config->dir);
 
     echo '[SUCCESS] 执行完毕：<br>';
-    print_r($res);
+//    print_r($res);
 
 } catch (Exception $e) {
 

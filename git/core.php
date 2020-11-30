@@ -47,10 +47,14 @@ abstract class Core
      */
     final public function exec (array $cmd, $dir='')
     {
+//        $res = [];
         array_unshift($cmd, 'cd '.$dir);
         foreach ($cmd as $i=>&$shell) {
             $shell = str_replace('{$dir}', $dir, $shell);
-            passthru ($shell);
+//            $res[$shell] = null;
+            $res = $status = null;
+            exec($shell, $res, $status);
+            $status || print_r($res);
 //            $res[] = '['.$i.'] '.$shell;
         }
 
