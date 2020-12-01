@@ -18,6 +18,8 @@ try {
         return print('无需部署。');
     }
 
+    echo 1;
+
     # 创建处理器
 //    if (!$git = Core::factory($config->typ)) {
 //        throw new Exception('暂不支持该GIT仓库。');
@@ -29,6 +31,7 @@ try {
         throw new Exception('KEY校验失败。');
     }
 
+    echo 2;
     $res = $git->exec($config->cmd);
 
     echo "[SUCCESS] 执行完毕：\n";
