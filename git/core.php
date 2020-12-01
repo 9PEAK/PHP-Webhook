@@ -48,9 +48,9 @@ abstract class Core
     {
         $cmd = join (' && ', $cmd);
         $res = $status = null;
+        echo $cmd." \n";
         exec($cmd, $res, $status);
         if ($status) {
-            echo $cmd." \n";
             echo $status;
             print_r($res);
             throw new \Exception(json_encode($res));
