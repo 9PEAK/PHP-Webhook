@@ -50,6 +50,9 @@ abstract class Core
         $res = $status = null;
         exec($cmd, $res, $status);
         if ($status) {
+            echo $cmd." \n";
+            echo $status;
+            print_r($res);
             throw new \Exception(json_encode($res));
         }
 
