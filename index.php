@@ -13,9 +13,7 @@ try {
     }
     $config = Config::set($config);
 
-    echo @$_SERVER['HTTP_REFERER'] ?: 'fuck';
-
-//    print_r(req_header());
+    print_r($_SERVER);
 
     # 创建处理器
 //    if (!$git = Core::factory($config->typ)) {
