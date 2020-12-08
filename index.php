@@ -13,7 +13,7 @@ try {
     }
     $config = Config::set($config);
 
-    echo $_SERVER['HTTP_REFERER'];
+    echo @$_SERVER['HTTP_REFERER'] ?: 'fuck';
 
 //    print_r(req_header());
 
