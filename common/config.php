@@ -23,7 +23,7 @@ class Config
     }
 
 
-    public $key, $dir, $msg, $typ, $cmd;
+    public $key, $dir, $typ, $cmd;
 
 
 }
