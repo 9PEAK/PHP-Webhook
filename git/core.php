@@ -15,11 +15,10 @@ abstract class Core
         if ($cls=@self::TYPE[$type]) {
             return new $cls;
         }
-        throw new Exception('暂不支持当前GIT仓库：'.$type.'。');
     }
 
 
-    abstract public function auth (string $key, array $header, array $body): bool;
+    abstract public function auth (string $key, array $header, $body): bool;
 
 
     /**
