@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">= 7.0",
+        "php": ">= 5.2",
         "katzgrau/klogger": "dev-master"
     },
     "minimum-stability": "dev",
