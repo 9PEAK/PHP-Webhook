@@ -4,8 +4,6 @@ include 'inc.php';
 include 'git/core.php';
 include 'vendor/autoload.php';
 
-$log = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
-
 try {
     # 初始化获取配置
     $config = @include('config.php');
@@ -26,11 +24,19 @@ try {
     # 执行脚本
     $res = $git->exec($config['cmd']);
 
-    echo "\n [SUCCESS] 执行完毕：";
+    $msg = '[SUCCESS] 执行完毕： ';
 
 
 } catch (Exception $e) {
 
-    echo '[ERROR] '.$e->getMessage();
-    $log->info($e->getMessage());
+    $msg = '[ERROR] '.$e->getMessage();
 }
+
+echo "\n ",$msg;
+
+if (!$_GET['log']) exit;
+$log = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
+$log->info('请求 HEADER ', req_header());
+$log->info('请求 BODY ');
+$log->info(req_body());
+@$e ? $log->alert($msg) : $log->info($msg);
