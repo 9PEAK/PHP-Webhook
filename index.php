@@ -24,7 +24,8 @@ try {
     $body = req_body();
     $log->info('body');
     $log->info(json_encode($body) );
-    $sign = 'sha1='.hash_hmac('sha1', json_encode($body), '702F05186DC10B740604D923E5BAE669');
+//    $sign = 'sha1='.hash_hmac('sha1', json_encode($body), '702F05186DC10B740604D923E5BAE669');
+    $sign = 'sha1='.sha1('702F05186DC10B740604D923E5BAE669'. json_encode($body));
     $log->info('签名： '. $sign);
 
     # 校验KEY

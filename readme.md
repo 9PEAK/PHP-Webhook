@@ -26,6 +26,7 @@
         # 仓库站点，目前仅支持github和gitee
         'typ' => 'gitee',
         
+        
         # shell
         'cmd' => [
             'cd /data/wwwroot/php-abc.net/'
