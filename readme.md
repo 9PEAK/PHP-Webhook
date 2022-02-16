@@ -41,7 +41,7 @@
 
 Webhook 的URL配置务必带上GET参数id，该参数即上述项目名称，表示具体需要部署的项目。
 <br> 如 http://{domain}/webhook/index.php?id=webhook 表示更新部署项目“webhook”。 
-
+<br> URL如附带log参数且有值，则webhook的请求和执行结果都将保存到日志文件夹“logs/”下。
 
 ### 避坑
 <ul>
