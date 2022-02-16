@@ -24,6 +24,7 @@ try {
 //    $body = req_body();
     $body = file_get_contents('php://input');
     if (strpos($body, 'payload=') === 0) {
+        $log->info('body 转化');
         $body = substr($body, 8);
     }
     $log->info('body');
