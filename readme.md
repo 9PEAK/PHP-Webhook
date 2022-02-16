@@ -1,12 +1,16 @@
 # Webhook 自动部署
 
-该程可根据仓库回调webhook配置的url时，自动执行所配置的shell。
+该程序可根据仓库webhook回调时，自动执行所配置的shell。
 <br>
-通常用于开发后，将最终代码部署到测试环境或生产环境，程序脚本虽然是PHP，但可使用在任何语言的项目上，只要服务器端能够正常执行PHP即可。目前作者已成功执行的shell如下：
+通常用于开发后，将最终代码部署到测试环境或生产环境，程序虽然是PHP，但可使用在任何语言的项目上，只要服务器端能够正常执行PHP即可。
 <ul>
+    <li>cd /www/wwwroot/php-abc.com</li>
     <li>git pull</li>
+    <li>composer install</li>
     <li>php artisan config:cache # Laravel 缓存更新</li>
     <li>php artisan migrate # Laravel迁移更新</li>
+    <li>... </li>
+    
 </ul>
 
 
@@ -14,28 +18,33 @@
 
 首先配置项目，将“example-config.php”更名为“config.php”，配置说明如下：
 ```php
-'webhook' => [ // 项目名称，多个项目名称不可重复
-        'key' => '9e06118d2754dba90a7c5a2886cf2ef6', // webhook中配置的token
-        'typ' => 'gitee', // 仓库站点，目前仅支持github和gitee
-        'cmd' => [ // shell，其中{$dir}将被解析为项目所在目录。
-            'cd /data/wwwroot/yun.abc.net/'
+# 项目名称，多个项目名称不可重复
+'webhook' => [
+        # webhook中配置的token或secret
+        'key' => '9e06118d2754dba90a7c5a2886cf2ef6',
+        
+        # 仓库站点，目前仅支持github和gitee
+        'typ' => 'gitee',
+        
+        # shell
+        'cmd' => [
+            'cd /data/wwwroot/php-abc.net/'
             'git pull',
-            'php /data/wwwroot/yun.abc.net/artisan migrate',
-            'php /data/wwwroot/yun.abc.net/artisan config:cache',
             'composer install',
+            'php /data/wwwroot/yun.abc.net/artisan config:cache',
+            'php /data/wwwroot/yun.abc.net/artisan migrate',
+            
         ]
     ]
 ```
 
-Webhook 的URL配置务必带上id参数，该参数即上述项目名称，表示具体需要部署的项目。
-<br> 如 http://abc.net/webhook/index.php?id=webhook 表示更新部署项目“webhook”。 
+Webhook 的URL配置务必带上GET参数id，该参数即上述项目名称，表示具体需要部署的项目。
+<br> 如 http://{domain}/webhook/index.php?id=webhook 表示更新部署项目“webhook”。 
 
-<br> 另外服务器请务必做好对应用户和权限的配置。
 
-### 问题
-目前作者尚未成功实现执行Composer install，如有成功解决者请留言告知，谢谢。
+### 避坑
 <ul>
 <li>
-    [PHP 使用 passthru 执行 “Composer install” 失败](https://learnku.com/php/t/37720)
+    服务器请务必做好对应用户和权限的配置：通常http请求的进程由www接管，若对应的目录下有归属非www且权限高于www的文件，则部分shell将执行失败（如 git pull拉取文件）。
 </li>
 </ul>

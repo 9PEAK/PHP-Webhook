@@ -2,7 +2,9 @@
 
 include 'common/req.php';
 include 'git/core.php';
+include 'vendor/autoload.php';
 
+$log = new Katzgrau\KLogger\Logger(__DIR__.'/logs');
 
 try {
     # 初始化获取配置
@@ -15,6 +17,9 @@ try {
     if (!$git = Core::factory($config['typ'])) {
         throw new Exception('暂不支持该GIT仓库。');
     }
+
+    $log->info(req_header());
+    $log->info((array)req_body());
 
     # 校验KEY
     if (!$git->auth($config['key'], req_header(), (array)req_body())) {

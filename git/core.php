@@ -23,23 +23,6 @@ abstract class Core
 
 
     /**
-     * 创建Shell文件
-     */
-//    private function shell ()
-//    {
-//        $file = self::$conf['dir'].'webhook.sh';
-//        if (!file_exists($file)) {
-//            $cmd = self::$conf['cmd'];
-//            array_unshift($cmd, '#!'.self::$shell);
-//            $cmd = join("\n", $cmd);
-//            file_put_contents($file, $cmd);
-//            chmod($file, 0110);
-//        }
-//    }
-
-
-
-    /**
      * 执行脚本
      * @param array $cmd 命令行数组集合
      * @return array 指令执行结果
@@ -47,31 +30,16 @@ abstract class Core
     final public function exec (array $cmd) :bool
     {
         $cmd = join (' && ', $cmd);
+        strpos($cmd, '2>&1') || $cmd.=' 2>&1';
         $res = $status = null;
-        echo $cmd." \n";
+        echo $cmd," \n";
         exec($cmd, $res, $status);
         if ($status) {
             echo $status;
             print_r($res);
             throw new \Exception(json_encode($res));
         }
-
         return true;
-
-//        $res = [];
-        array_unshift($cmd, 'cd '.$dir);
-        foreach ($cmd as $i=>&$shell) {
-            $shell = str_replace('{$dir}', $dir, $shell);
-//            $res[$shell] = null;
-            $res = $status = null;
-            exec($shell, $res, $status);
-//            print_r($res);
-            $status && print('指令出错：'.$shell);
-//            $res[] = '['.$i.'] '.$shell;
-        }
-
-        return $cmd;
-
     }
 
 }
