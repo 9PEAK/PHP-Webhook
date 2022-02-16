@@ -49,4 +49,5 @@ try {
 } catch (Exception $e) {
 
     echo '[ERROR] '.$e->getMessage();
+    $log->info($e->getMessage());
 }
