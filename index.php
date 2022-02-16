@@ -44,6 +44,8 @@ try {
 
     echo "\n [SUCCESS] 执行完毕：";
 
+    $log->info('成功。');
+
 } catch (Exception $e) {
 
     echo '[ERROR] '.$e->getMessage();
