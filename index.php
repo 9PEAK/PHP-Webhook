@@ -18,8 +18,12 @@ try {
         throw new Exception('暂不支持该GIT仓库。');
     }
 
-    $log->info('head', req_header());
-    $log->info('body', (array)req_body());
+    $header = req_header();
+    $log->info('head', $header['X-Hub-Signature']);
+    $body = req_body();
+    $log->info('body', json_encode($body) );
+    $sign = 'sha1='.hash_hmac('sha1', json_encode($body), '702F05186DC10B740604D923E5BAE669');
+    $log->info('sign', $sign);
 
     # 校验KEY
     if (!$git->auth($config['key'], req_header(), (array)req_body())) {
@@ -33,6 +37,5 @@ try {
 
 } catch (Exception $e) {
 
-//    echo '[ERROR CODE] '.$e->getCode(), '<br>';
     echo '[ERROR] '.$e->getMessage();
 }
