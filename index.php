@@ -18,8 +18,8 @@ try {
         throw new Exception('暂不支持该GIT仓库。');
     }
 
-    $log->info(req_header());
-    $log->info((array)req_body());
+    $log->info('head', req_header());
+    $log->info('body', (array)req_body());
 
     # 校验KEY
     if (!$git->auth($config['key'], req_header(), (array)req_body())) {
