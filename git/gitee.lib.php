@@ -4,7 +4,7 @@ final class Gitee extends Core
 {
 
 
-    public function auth(string $key, array $header, array $body=[]): bool
+    public function auth(string $key, array $header, $body=[]): bool
     {
         return @$header['X-Gitee-Token']==$key;
     }
