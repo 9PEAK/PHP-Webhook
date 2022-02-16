@@ -19,11 +19,13 @@ try {
     }
 
     $header = req_header();
-    $log->info('head', $header['X-Hub-Signature']);
+    $log->info('head' );
+    $log->info(@$header['X-Hub-Signature'] );
     $body = req_body();
-    $log->info('body', json_encode($body) );
+    $log->info('body');
+    $log->info(json_encode($body) );
     $sign = 'sha1='.hash_hmac('sha1', json_encode($body), '702F05186DC10B740604D923E5BAE669');
-    $log->info('sign', $sign);
+    $log->info('签名： '. $sign);
 
     # 校验KEY
     if (!$git->auth($config['key'], req_header(), (array)req_body())) {
