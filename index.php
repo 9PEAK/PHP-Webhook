@@ -21,7 +21,11 @@ try {
     $header = req_header();
     $log->info('head' );
     $log->info(@$header['X-Hub-Signature'] );
-    $body = req_body();
+//    $body = req_body();
+    $body = file_get_contents('php://input');
+    if (strpos($body, 'payload=') === 0) {
+        $body = substr(urldecode($body), 8);
+    }
     $log->info('body');
     $log->info(json_encode($body) );
 //    $sign = 'sha1='.hash_hmac('sha1', json_encode($body), '702F05186DC10B740604D923E5BAE669');
