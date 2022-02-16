@@ -39,12 +39,13 @@ try {
         throw new Exception('KEY校验失败。');
     }
 
+    $log->info('成功。');
+
     # 执行脚本
     $res = $git->exec($config['cmd']);
 
     echo "\n [SUCCESS] 执行完毕：";
 
-    $log->info('成功。');
 
 } catch (Exception $e) {
 
