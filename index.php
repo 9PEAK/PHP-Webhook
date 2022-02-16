@@ -24,7 +24,7 @@ try {
 //    $body = req_body();
     $body = file_get_contents('php://input');
     if (strpos($body, 'payload=') === 0) {
-        $body = substr(urldecode($body), 8);
+        $body = substr($body, 8);
     }
     $log->info('body');
     $log->info(json_encode($body) );
